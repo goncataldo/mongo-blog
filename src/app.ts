@@ -1,9 +1,8 @@
-require('dotenv').config()
-export {};
-const express = require("express");
+require("dotenv").config();
+import express = require("express");
+import { client } from "./config/database";
+import blogRouter from "./routes/blogRouter";
 const app = express();
-const { client } = require("./config/database");
-const blogRouter  = require("./routes/blogRouter");
 const port = process.env.PORT;
 
 async function mongoConnect() {
@@ -26,4 +25,3 @@ app.use("/", blogRouter);
 app.listen(port, () => {
   console.log(`Now listening on port ${port}`);
 });
-
