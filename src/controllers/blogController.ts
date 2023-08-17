@@ -13,10 +13,10 @@ export const getBlogs = async (_req: Request, res: Response) => {
   }
 };
 
-export const createBlog = async (_req: Request, res: Response) => {
+export const createBlog = async (req: Request, res: Response) => {
   try {
     await client.connect();
-    const data = await blogs.insertOne(_req.body);
+    const data = await blogs.insertOne(req.body);
     res.json({ message: "Successful", data: data });
   } catch (error) {
     console.error(error);
@@ -24,10 +24,10 @@ export const createBlog = async (_req: Request, res: Response) => {
   }
 };
 
-export const deleteBlog = async (_req: Request, res: Response) => {
+export const deleteBlog = async (req: Request, res: Response) => {
   try {
     await client.connect();
-    const data = await blogs.deleteOne(_req.body);
+    const data = await blogs.deleteOne(req.body);
     res.json({ message: "Successful", data: data });
   } catch (error) {
     console.error(error);
@@ -35,10 +35,10 @@ export const deleteBlog = async (_req: Request, res: Response) => {
   }
 };
 
-export const updateBlog = async (_req: Request, res: Response) => {
+export const updateBlog = async (req: Request, res: Response) => {
   try {
     await client.connect();
-    const data = await blogs.updateOne(_req.body.filter, _req.body.new);
+    const data = await blogs.updateOne(req.body.filter, req.body.new);
     res.json({ message: "Successful", data: data });
   } catch (error) {
     console.error(error);
